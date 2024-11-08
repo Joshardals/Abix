@@ -13,6 +13,7 @@ export default {
         black: "#000000",
         gray: "#e5e5e5",
         navyBlue: "#14213d",
+        yellow: "#fca311",
       },
       fontFamily: {
         rubik: ["var(--font-rubik)"],

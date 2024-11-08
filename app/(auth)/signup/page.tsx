@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <main className="px-5 maxCenter contentCenter w-full mt-[3.5rem]">
+    <main className=" maxCenter py-10 px-5 contentCenter w-full">
       {/* Container div for the page header and description */}
       <div className="mb-8 text-center">
         {/* Page heading for account creation */}

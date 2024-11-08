@@ -1,6 +1,6 @@
 "use client"; // Ensures this file runs on the client side.
 
-import { ButtonInput, FormInput } from "@/components/form/FormInput"; // Import custom form components.
+import { ButtonInput, SignupFormInput } from "@/components/form/FormInput"; // Import custom form components.
 import { Form } from "@/components/ui/form"; // Import Form component for form management.
 import Link from "next/link"; // Import Link for client-side navigation.
 import { useForm } from "react-hook-form"; // Import useForm hook for managing form state.
@@ -93,35 +93,35 @@ export function SignupForm() {
         autoComplete="off" // Disable browser autocomplete.
       >
         {/* Input fields for sign-up. */}
-        <FormInput
+        <SignupFormInput
           form={form}
           name="fullname"
           type="text"
           placeholder="Fullname"
           loading={loading}
         />
-        <FormInput
+        <SignupFormInput
           form={form}
           name="username"
           type="text"
           placeholder="Username"
           loading={loading}
         />
-        <FormInput
+        <SignupFormInput
           form={form}
           name="email"
           type="text"
           placeholder="Email"
           loading={loading}
         />
-        <FormInput
+        <SignupFormInput
           form={form}
           name="password"
           type="password"
           placeholder="Password"
           loading={loading}
         />
-        <FormInput
+        <SignupFormInput
           form={form}
           name="confirmPassword"
           type="password"

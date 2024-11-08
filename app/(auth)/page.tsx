@@ -33,7 +33,7 @@ export default async function LoginPage() {
   // Return the TSX structure to be rendered for this page.
   // This TSX will be transformed into HTML and displayed in the browser.
   return (
-    <main className="px-5 maxCenter contentCenter w-full">
+    <main className="py-10 px-5 contentCenter maxCenter contentCenter w-full">
       {/* Container div for the welcome message */}
       <div className="mb-8 text-center">
         {/* Heading for the page */}

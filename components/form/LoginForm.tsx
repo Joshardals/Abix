@@ -1,6 +1,6 @@
 "use client"; // Indicates that this file should be run on the client side (not during server-side rendering).
 
-import { ButtonInput, FormInput } from "@/components/form/FormInput"; // Import custom form components.
+import { ButtonInput, LoginFormInput } from "@/components/form/FormInput"; // Import custom form components.
 import { Form } from "@/components/ui/form"; // Import Form component for handling form state and submissions.
 import Link from "next/link"; // Import Link component for client-side navigation.
 import { useForm } from "react-hook-form"; // Import useForm hook from react-hook-form.
@@ -69,7 +69,7 @@ export function LoginForm() {
         autoComplete="off" // Disable browser autocomplete for this form.
       >
         {/* Input fields for email and password. */}
-        <FormInput
+        <LoginFormInput
           form={form}
           name="email"
           type="text"
@@ -77,7 +77,7 @@ export function LoginForm() {
           loading={loading}
         />
 
-        <FormInput
+        <LoginFormInput
           form={form}
           name="password"
           type="password"

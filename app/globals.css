@@ -9,7 +9,7 @@
 
   /* Center content horizontally and vertically with minimum height of the viewport */
   .contentCenter {
-    @apply flex flex-col items-center justify-center min-h-screen;
+    @apply flex flex-col items-center justify-center lg:min-h-screen;
     /* Use flexbox to center items */
     /* Flex direction column */
     /* Center items horizontally and vertically */
