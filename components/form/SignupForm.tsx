@@ -4,7 +4,7 @@ import { ButtonInput, FormInput } from "@/components/form/FormInput"; // Import 
 import { Form } from "@/components/ui/form"; // Import Form component for form management.
 import Link from "next/link"; // Import Link for client-side navigation.
 import { useForm } from "react-hook-form"; // Import useForm hook for managing form state.
-import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
+// import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
 import { useState } from "react"; // Import useState for managing component state.
 // import { zodResolver } from "@hookform/resolvers/zod"; // Import zodResolver to integrate Zod with react-hook-form.
 // import { signupUser } from "@/lib/actions/auth.action"; // Import function for signing up users.
@@ -75,8 +75,8 @@ export function SignupForm() {
       //   router.push("/home"); // Redirect to home page on successful sign-up.
 
       console.log(values);
-    } catch (error: any) {
-      console.log(`Error signing up: ${error.message}`); // Log any unexpected errors.
+    } catch (error) {
+      console.log(`Error signing up: ${error}`); // Log any unexpected errors.
       setError("An unexpected error occurred. Please try again."); // Display a generic error message.
     } finally {
       setLoading(false); // End loading state.
