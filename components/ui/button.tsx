@@ -12,7 +12,7 @@ const buttonVariants = cva(
       variant: {
         default: "", // Default button style (no additional styles applied).
         // home: "bg-deepRed hover:bg-deepRed/90 text-softWhite", // Styling for 'home' variant.
-        abix: "bg-yellow hover:bg-yellow/70 text-navyBlue", // Styling for 'ticket' variant.
+        abix: "bg-yellow hover:bg-yellow/70 text-navyBlue rounded-lg", // Styling for 'ticket' variant.
       },
       size: {
         default: "h-10 px-4 py-2", // Default button size.
