@@ -51,8 +51,8 @@ export function LoginForm() {
       //   router.push("/home"); // Redirect to home page on successful sign in.
 
       console.log(values);
-    } catch (error: any) {
-      console.log(`An unexpected error occurred: ${error.message}`); // Log unexpected errors.
+    } catch (error) {
+      console.log(`An unexpected error occurred: ${error}`); // Log unexpected errors.
       setError("An unexpected error occurred. Please try again."); // Set generic error message.
     } finally {
       setLoading(false); // Set loading state to false.

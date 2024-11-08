@@ -163,7 +163,7 @@ export function FormInput({
                 placeholder={placeholder}
                 type={inputType}
                 {...field}
-                onChange={(e: any) => {
+                onChange={(e) => {
                   form?.setValue(name!, e.target.value);
                 }}
                 disabled={loading}
