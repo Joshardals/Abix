@@ -27,7 +27,7 @@ export default function Homepage() {
               </div>
 
               <p className="font-light text-sm max-w-md max-md:mx-auto max-md:text-center">
-                Experience limitless travel possibilities with Abix's innovative
+                Experience limitless travel possibilities with Abix&apos;s innovative
                 flight booking platform. Start your journey today!
               </p>
             </div>
