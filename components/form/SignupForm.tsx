@@ -14,7 +14,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null); // State for error messages.
   const [loading, setLoading] = useState<boolean>(false); // State for loading spinner.
-  const router = useRouter(); // Router instance for navigation.
+  // const router = useRouter(); // Router instance for navigation.
 
   const formSchema = z
     .object({
