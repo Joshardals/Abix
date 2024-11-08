@@ -2,20 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@layer utilities {
+  body {
+    @apply bg-gray text-[#14213d] leading-6 scroll-smooth font-rubik;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Center content horizontally and vertically with minimum height of the viewport */
+  .contentCenter {
+    @apply flex flex-col items-center justify-center min-h-screen;
+    /* Use flexbox to center items */
+    /* Flex direction column */
+    /* Center items horizontally and vertically */
+    /* Set minimum height to 100vh */
+  }
+
+  /* Center content with a maximum width and horizontal margin auto */
+  .maxCenter {
+    @apply max-w-[1200px] mx-auto;
+    /* Set maximum width to 1200px */
+    /* Center horizontally with auto margins */
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  :root {
+    --radius: 0.5rem;
+  }
 }
