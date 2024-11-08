@@ -93,7 +93,7 @@ export function LoginForm() {
 
         {/* Link to sign up page for users who don't have an account. */}
         <p className="text-sm text-center">
-          Don’t have an account?{" "}
+          <span className="opacity-70">Don&apos;t have an account?</span>{" "}
           <Link href="/signup" className="text-deepRed font-semibold">
             Sign up here
           </Link>
