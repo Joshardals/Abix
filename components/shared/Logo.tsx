@@ -6,7 +6,7 @@ export function Logo() {
       {/* Main logo text */}
       <h1
         className="
-      text-2xl font-extrabold text-gray tracking-widest italic
+      text-2xl max-md:text-xl font-extrabold text-gray tracking-widest italic
     "
       >
         {/* Application name with styling */}

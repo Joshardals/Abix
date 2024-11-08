@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer utilities {
+  html,
   body {
-    @apply bg-gray text-[#14213d] leading-6 scroll-smooth font-rubik;
+    @apply bg-navyBlue text-navyBlue leading-6 scroll-smooth font-rubik;
   }
 
   /* Center content horizontally and vertically with minimum height of the viewport */
