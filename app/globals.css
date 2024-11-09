@@ -17,6 +17,10 @@
     /* Set minimum height to 100vh */
   }
 
+  .hover-effects {
+    @apply ease-in-out duration-200 transition-all;
+  }
+
   /* Center content with a maximum width and horizontal margin auto */
   .maxCenter {
     @apply max-w-[1200px] mx-auto;
