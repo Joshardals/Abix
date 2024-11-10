@@ -11,12 +11,9 @@ export function useClickOutside(
       }
     }
 
-    // Add the event listener
     document.addEventListener("mousedown", handleClickOutside);
-
-    // Cleanup the event listener on component unmount
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref, callback]); // Dependency array includes ref and callback
+  }, [ref, callback]);
 }

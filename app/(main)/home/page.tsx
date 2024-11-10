@@ -1,5 +1,5 @@
-import { SearchTicket } from "@/components/Home/SearchTicket";
 import { Logo } from "@/components/shared/Logo";
+import { SearchTicket } from "@/components/Home/SearchTicket";
 
 export const metadata = {
   title: "Abix - Home",
