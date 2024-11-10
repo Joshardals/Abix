@@ -26,8 +26,8 @@ export function SearchTicket() {
   const [loading, setLoading] = useState(false);
 
   // States to store selected airports
-  const [fromLocation, setFromLocation] = useState("London, United Kingdom");
-  const [toLocation, setToLocation] = useState("Lagos, Nigeria");
+  const [fromLocation, setFromLocation] = useState("");
+  const [toLocation, setToLocation] = useState("");
 
   // New states for amount and date
   const [amount, setAmount] = useState(1);
@@ -37,7 +37,18 @@ export function SearchTicket() {
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    // Check if each field is selected
+    if (!fromLocation || !toLocation || !amount || !date) {
+      alert(
+        "Please select a 'From' location, 'To' location, departure date, and number of people before submitting."
+      );
+      return; // Prevent form submission
+    }
+
+    // If all fields are filled, proceed with form submission
     setLoading(true);
+    // Handle your form submission logic here (e.g., send request to server)
   }
 
   function toggleFrom() {
@@ -361,14 +372,3 @@ function AmountSelector({
     </div>
   );
 }
-// function Select({ label, value }: { label: string; value: string | number }) {
-//   return (
-//     <div className="ring-1 ring-black/10 p-2 rounded-lg space-y-1 cursor-pointer">
-//       <span className="opacity-50">{label}</span>
-//       <div className="flex justify-between items-center">
-//         <div className="font-medium">{value}</div>
-//         <MdOutlineKeyboardArrowDown className="size-5" />
-//       </div>
-//     </div>
-//   );
-// }
