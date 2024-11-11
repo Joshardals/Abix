@@ -1,7 +1,7 @@
 "use server";
 
 import { databases } from "../appwrite.config";
-import { ID, Query, Models } from "node-appwrite";
+import { ID, Query } from "node-appwrite";
 import { getCurrentUser } from "./auth.action";
 
 const { DATABASE_ID, USERS_ID } = process.env;
@@ -17,13 +17,6 @@ interface FetchUserInfoResponse {
   success: boolean;
   userInfo?: User;
   msg?: string;
-}
-
-interface UsersResponse {
-  data?: User[];
-  success: boolean;
-  msg?: string;
-  total?: number;
 }
 
 export async function createUserInfo(data: User) {

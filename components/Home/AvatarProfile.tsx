@@ -10,7 +10,7 @@ export default async function AvatarProfile() {
 
   const initials = name
     .split(" ") // Split the name into words
-    .map((word: any) => word[0]) // Extract the first letter of each word
+    .map((word: string) => word[0]) // Extract the first letter of each word
     .join(""); // Join the letters to form the initials
 
   return <Avatar initials={initials} />;
