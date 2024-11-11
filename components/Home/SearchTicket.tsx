@@ -16,18 +16,24 @@ import {
 import { IoSearch } from "react-icons/io5";
 import { Input } from "../ui/input";
 import { useClickOutside } from "@/lib/hooks";
-import debounce from "lodash/debounce";
-import axios from "axios";
+
 import { format } from "date-fns"; // For date formatting
+import { useRouter } from "next/navigation";
+import {
+  fetchAirportsDebounced,
+  generateRandomFlightTime,
+  generateRandomPrice,
+} from "@/lib/utils";
 
 export function SearchTicket() {
   const [fromState, setFromState] = useState(false);
   const [toState, setToState] = useState(false);
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   // States to store selected airports
-  const [fromLocation, setFromLocation] = useState("");
-  const [toLocation, setToLocation] = useState("");
+  const [fromLocation, setFromLocation] = useState("London, United Kingdom");
+  const [toLocation, setToLocation] = useState("Lagos, Nigeria");
 
   // New states for amount and date
   const [amount, setAmount] = useState(1);
@@ -48,7 +54,21 @@ export function SearchTicket() {
 
     // If all fields are filled, proceed with form submission
     setLoading(true);
-    // Handle your form submission logic here (e.g., send request to server)
+
+    // Generate random price and flight time
+    const randomPrice = generateRandomPrice(fromLocation, toLocation);
+    const randomFlightTime = generateRandomFlightTime(fromLocation, toLocation);
+
+    const queryParams = new URLSearchParams({
+      from: fromLocation,
+      to: toLocation,
+      date: date ? format(date, "yyyy-MM-dd") : "",
+      amount: amount.toString(),
+      price: randomPrice.toString(),
+      flightTime: randomFlightTime.toString(), // Flight time in hours
+    });
+
+    router.push(`/home/tickets?${queryParams.toString()}`);
   }
 
   function toggleFrom() {
@@ -137,37 +157,6 @@ export function SearchTicket() {
     </div>
   );
 }
-
-const fetchAirportsDebounced = debounce(
-  async (query: string, setLocationResults: any, setLocationLoading: any) => {
-    if (!query) return;
-    setLocationLoading(true);
-
-    try {
-      const url = `https://port-api.com/port/search/${encodeURIComponent(
-        query
-      )}`;
-      const response = await axios.get(url);
-      const airports = response.data.features;
-
-      const results = airports.map((airport: any) => ({
-        name: airport.properties.name,
-        city: airport.properties.municipality,
-        country: airport.properties.country.name,
-        iata: airport.properties.iata,
-        type: airport.properties.type,
-        coordinates: airport.geometry.coordinates,
-      }));
-
-      setLocationResults(results);
-    } catch (error) {
-      console.error("Failed to fetch airports:", error);
-    }
-
-    setLocationLoading(false);
-  },
-  300
-);
 
 export function LocationInput({
   label,
