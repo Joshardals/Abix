@@ -158,6 +158,13 @@ export function SearchTicket() {
   );
 }
 
+// Define a type for the airport object
+interface Airport {
+  name: string;
+  city: string;
+  country: string;
+}
+
 export function LocationInput({
   label,
   destination,
@@ -173,7 +180,7 @@ export function LocationInput({
 }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [locationLoading, setLocationLoading] = useState(false);
-  const [locationResults, setLocationResults] = useState<any[]>([]);
+  const [locationResults, setLocationResults] = useState<Airport[]>([]); // Use the Airport type here
 
   useEffect(() => {
     fetchAirportsDebounced(searchTerm, setLocationResults, setLocationLoading);

@@ -3,12 +3,27 @@ import { twMerge } from "tailwind-merge";
 import debounce from "lodash/debounce";
 import axios from "axios";
 
+// Define types for the airport result
+interface Airport {
+  name: string;
+  city: string;
+  country: string;
+  iata: string;
+  type: string;
+  coordinates: number[];
+}
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// Define the debounced fetch function with proper types
 export const fetchAirportsDebounced = debounce(
-  async (query: string, setLocationResults: any, setLocationLoading: any) => {
+  async (
+    query: string,
+    setLocationResults: (results: Airport[]) => void, // Set the correct type for the results setter
+    setLocationLoading: (loading: boolean) => void // Set the correct type for the loading setter
+  ) => {
     if (!query) return;
     setLocationLoading(true);
 
@@ -19,7 +34,7 @@ export const fetchAirportsDebounced = debounce(
       const response = await axios.get(url);
       const airports = response.data.features;
 
-      const results = airports.map((airport: any) => ({
+      const results: Airport[] = airports.map((airport: any) => ({
         name: airport.properties.name,
         city: airport.properties.municipality,
         country: airport.properties.country.name,
@@ -38,6 +53,7 @@ export const fetchAirportsDebounced = debounce(
   300
 );
 
+// Other utility functions (no changes needed)
 export function generateRandomPrice(from: string, to: string) {
   let basePrice = 0;
 
