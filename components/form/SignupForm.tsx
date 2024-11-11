@@ -4,17 +4,16 @@ import { ButtonInput, SignupFormInput } from "@/components/form/FormInput"; // I
 import { Form } from "@/components/ui/form"; // Import Form component for form management.
 import Link from "next/link"; // Import Link for client-side navigation.
 import { useForm } from "react-hook-form"; // Import useForm hook for managing form state.
-// import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
+import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
 import { useState } from "react"; // Import useState for managing component state.
-// import { zodResolver } from "@hookform/resolvers/zod"; // Import zodResolver to integrate Zod with react-hook-form.
-// import { signupUser } from "@/lib/actions/auth.action"; // Import function for signing up users.
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/lib/actions/auth.action";
 
 export function SignupForm() {
   const [error, setError] = useState<string | null>(null); // State for error messages.
   const [loading, setLoading] = useState<boolean>(false); // State for loading spinner.
-  // const router = useRouter(); // Router instance for navigation.
+  const router = useRouter(); // Router instance for navigation.
 
   const formSchema = z
     .object({
@@ -58,23 +57,21 @@ export function SignupForm() {
       setError(null); // Clear previous errors.
 
       // Attempt to sign up the user.
-      //   const result = await signupUser({
-      //     fullname: values.fullname,
-      //     username: values.username,
-      //     email: values.email,
-      //     password: values.password,
-      //   });
+      const result = await registerUser({
+        fullName: values.fullname,
+        userName: values.username,
+        email: values.email,
+        password: values.password,
+      });
 
       // Check if the sign-up was successful.
-      //   if (!result.success) {
-      //     setError(result.msg); // Set error message if sign-up fails.
-      //     return;
-      //   }
+      if (!result.success) {
+        setError(result.msg || ""); // Set error message if sign-up fails.
+        return;
+      }
 
-      //   alert("User created successfully"); // Show success message.
-      //   router.push("/home"); // Redirect to home page on successful sign-up.
-
-      console.log(values);
+      alert("User created successfully"); // Show success message.
+      router.push("/home"); // Redirect to home page on successful sign-up.
     } catch (error) {
       console.log(`Error signing up: ${error}`); // Log any unexpected errors.
       setError("An unexpected error occurred. Please try again."); // Display a generic error message.
@@ -130,7 +127,9 @@ export function SignupForm() {
         />
 
         {/* Display error message if any. */}
-        {error && <p className="text-deepRed text-xs font-bold">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-xs text-center font-bold">{error}</p>
+        )}
 
         {/* Submit button for the form. */}
         <ButtonInput loading={loading} label="Sign Up" />

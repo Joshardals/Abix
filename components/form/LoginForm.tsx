@@ -4,16 +4,17 @@ import { ButtonInput, LoginFormInput } from "@/components/form/FormInput"; // Im
 import { Form } from "@/components/ui/form"; // Import Form component for handling form state and submissions.
 import Link from "next/link"; // Import Link component for client-side navigation.
 import { useForm } from "react-hook-form"; // Import useForm hook from react-hook-form.
-// import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
+import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
 import { useState } from "react"; // Import useState for managing component state.
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod"; // Import zodResolver for using Zod with react-hook-form.
+import { signInUser } from "@/lib/actions/auth.action";
 // import { signInUser } from "@/lib/actions/auth.action"; // Import signInUser function to handle authentication.
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null); // State for storing error messages.
   const [loading, setLoading] = useState<boolean>(false); // State for managing loading spinner.
-  // const router = useRouter(); // Router instance for navigation.
+  const router = useRouter(); // Router instance for navigation.
 
   const formSchema = z.object({
     email: z.string().email(), // Validates that the email is a valid email address format.
@@ -32,25 +33,24 @@ export function LoginForm() {
   // Function to handle form submission.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      //   setLoading(true); // Set loading state to true.
-      //   setError(null); // Clear any previous error messages.
+      setLoading(true); // Set loading state to true.
+      setError(null); // Clear any previous error messages.
 
-      //   // Attempt to sign in the user.
-      //   const result = await signInUser({
-      //     email: values.email,
-      //     password: values.password,
-      //   });
+      // Attempt to sign in the user.
+      const result = await signInUser({
+        email: values.email,
+        password: values.password,
+      });
 
-      //   // Check if the authentication was successful.
-      //   if (!result.success) {
-      //     setError(result.msg); // Set error message if authentication fails.
-      //     return;
-      //   }
+      // Check if the authentication was successful.
+      if (!result.success) {
+        setError(result.msg || "error"); // Set error message if authentication fails.
+        return;
+      }
 
-      //   alert("User signed in successfully"); // Show success alert.
-      //   router.push("/home"); // Redirect to home page on successful sign in.
+      alert("User signed in successfully"); // Show success alert.
+      router.push("/home"); // Redirect to home page on successful sign in.
 
-      console.log(values);
     } catch (error) {
       console.log(`An unexpected error occurred: ${error}`); // Log unexpected errors.
       setError("An unexpected error occurred. Please try again."); // Set generic error message.
@@ -86,7 +86,9 @@ export function LoginForm() {
         />
 
         {/* Display error message if there is one. */}
-        {error && <p className="text-deepRed text-xs font-bold">{error}</p>}
+        {error && (
+          <p className="text-red-500 text-xs text-center font-bold">{error}</p>
+        )}
 
         {/* Submit button for the form. */}
         <ButtonInput loading={loading} label="Login" />

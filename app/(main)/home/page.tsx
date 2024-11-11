@@ -1,12 +1,6 @@
 import { Logo } from "@/components/shared/Logo";
 import { SearchTicket } from "@/components/Home/SearchTicket";
-import Avatar from "@/components/Home/Avatar";
-
-export const metadata = {
-  title: "Abix - Home",
-  description:
-    "Welcome to Abix! Book your flights easily and embark on your next adventure with ease.",
-};
+import AvatarProfile from "@/components/Home/AvatarProfile";
 
 export default async function Homepage() {
   return (
@@ -17,7 +11,7 @@ export default async function Homepage() {
           <Logo />
         </div>
 
-        <Avatar />
+        <AvatarProfile />
       </div>
       <section className="max-w-[1024px] mx-auto px-5">
         <section className="relative text-gray flex flex-col justify-center min-h-screen">
