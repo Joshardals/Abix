@@ -2,16 +2,7 @@ import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import debounce from "lodash/debounce";
 import axios from "axios";
-
-// Define types for the airport result
-interface Airport {
-  name: string;
-  city: string;
-  country: string;
-  iata: string;
-  type: string;
-  coordinates: number[];
-}
+import { Airport, ApiResponse } from "@/typings";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -31,7 +22,8 @@ export const fetchAirportsDebounced = debounce(
       const url = `https://port-api.com/port/search/${encodeURIComponent(
         query
       )}`;
-      const response = await axios.get<{ features: any[] }>(url); // Explicitly type the response
+      const response = await axios.get<ApiResponse>(url); // Explicitly type the response
+
       const airports = response.data.features;
 
       const results: Airport[] = airports.map((airport) => ({
@@ -52,7 +44,6 @@ export const fetchAirportsDebounced = debounce(
   },
   300
 );
-
 // Other utility functions (no changes needed)
 export function generateRandomPrice(from: string, to: string): number {
   let basePrice = 0;
