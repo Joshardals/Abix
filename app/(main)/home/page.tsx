@@ -1,5 +1,6 @@
 import { Logo } from "@/components/shared/Logo";
 import { SearchTicket } from "@/components/Home/SearchTicket";
+import Avatar from "@/components/Home/Avatar";
 
 export const metadata = {
   title: "Abix - Home",
@@ -11,10 +12,12 @@ export default async function Homepage() {
   return (
     <main className="relative bg-[url('/hero.jpg')] bg-cover min-h-screen">
       <div className="absolute bg-black inset-0 opacity-60" />
-      <div className="md:fixed md:left-0 md:right-0 p-5 maxCenter">
+      <div className="md:fixed md:left-0 md:right-0 p-5 maxCenter flex items-center justify-between">
         <div>
           <Logo />
         </div>
+
+        <Avatar />
       </div>
       <section className="max-w-[1024px] mx-auto px-5">
         <section className="relative text-gray flex flex-col justify-center min-h-screen">
