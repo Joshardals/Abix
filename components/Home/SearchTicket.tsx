@@ -68,9 +68,13 @@ export function SearchTicket() {
       flightTime: randomFlightTime.toString(), // Flight time in hours
     });
 
-    router.push(`/home/tickets?${queryParams.toString()}`);
+    // Simulate loading for 2 seconds before redirecting
+    setTimeout(() => {
+      // Redirect after 2 seconds
+      router.push(`/home/tickets?${queryParams.toString()}`);
+      setLoading(false); // Optionally stop the loading state after redirect
+    }, 2000);
   }
-
   function toggleFrom() {
     setFromState((prevState) => !prevState);
     setToState(false);

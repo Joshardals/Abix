@@ -67,3 +67,14 @@ export interface Airport {
   type: string;
   coordinates: number[];
 }
+
+// Define a TypeScript interface for the ticket structure
+export interface Ticket {
+  id: number;
+  from: string | null;
+  to: string | null;
+  date: string | null;
+  amount: string | null;
+  price: string | null;
+  flightTime: string | null;
+}
