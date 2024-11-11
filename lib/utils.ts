@@ -31,10 +31,10 @@ export const fetchAirportsDebounced = debounce(
       const url = `https://port-api.com/port/search/${encodeURIComponent(
         query
       )}`;
-      const response = await axios.get(url);
+      const response = await axios.get<{ features: any[] }>(url); // Explicitly type the response
       const airports = response.data.features;
 
-      const results: Airport[] = airports.map((airport: any) => ({
+      const results: Airport[] = airports.map((airport) => ({
         name: airport.properties.name,
         city: airport.properties.municipality,
         country: airport.properties.country.name,
@@ -54,7 +54,7 @@ export const fetchAirportsDebounced = debounce(
 );
 
 // Other utility functions (no changes needed)
-export function generateRandomPrice(from: string, to: string) {
+export function generateRandomPrice(from: string, to: string): number {
   let basePrice = 0;
 
   // Set base prices based on common routes using includes
@@ -91,7 +91,7 @@ export function generateRandomPrice(from: string, to: string) {
   return Math.round(basePrice + fluctuation);
 }
 
-export function generateRandomFlightTime(from: string, to: string) {
+export function generateRandomFlightTime(from: string, to: string): number {
   let baseTime = 0;
 
   // Base flight times based on route using includes
