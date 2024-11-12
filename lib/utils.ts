@@ -131,3 +131,29 @@ export function formatPrice(price: number, currency: string = "USD"): string {
 
   return formatter.format(price);
 }
+
+export function formatSubCurrency(price: number): number {
+  return Math.round(price * 100); // Convert dollars to cents
+}
+
+
+export function formatDate(isoString: string): string {
+  // Parse the ISO string into a Date object
+  const date = new Date(isoString);
+
+  // Extract and format date components
+  const year = date.getUTCFullYear(); // Get the year
+  const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Get month (1-based index) and pad to 2 digits
+  const day = String(date.getUTCDate()).padStart(2, "0"); // Get day and pad to 2 digits
+
+  let hours = date.getUTCHours(); // Get hours in 24-hour format
+  const minutes = String(date.getUTCMinutes()).padStart(2, "0"); // Get minutes and pad to 2 digits
+
+  // Determine AM/PM and convert hours to 12-hour format
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12 || 12; // Convert 24-hour time to 12-hour time, with 0 becoming 12
+  const formattedHours = String(hours).padStart(2, "0"); // Pad hours to 2 digits
+
+  // Return formatted date string
+  return `${month}/${day}/${year} ${formattedHours}:${minutes} ${ampm}`;
+}

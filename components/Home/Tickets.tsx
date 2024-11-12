@@ -75,13 +75,16 @@ export function Tickets() {
               </div>
               <div className="text-lg font-medium">{`${ticket.from} ➔ ${ticket.to}`}</div>
               <div className="text-sm text-gray-500">{`Duration: ${ticket.flightTime} hours`}</div>
-              <div className="mt-4">
+              <Link
+                href={`/home/tickets/checkout?amount=${ticket.price}&from=${ticket.from}&to=${ticket.to}`}
+                className="mt-4"
+              >
                 <ButtonInput
                   variant="abix"
                   label="Book Now"
                   loading={loading}
                 />
-              </div>
+              </Link>
             </div>
           ))}
         </div>

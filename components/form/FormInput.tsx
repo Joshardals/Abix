@@ -44,7 +44,7 @@ interface SignupFormInputProps {
 }
 
 interface ButtonInputProps {
-  loading: boolean;
+  loading?: boolean;
   label?: string;
   variant?: "abix";
   disabled?: boolean;

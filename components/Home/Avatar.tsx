@@ -6,6 +6,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { signOutUser } from "@/lib/actions/auth.action";
+import Link from "next/link";
 
 export default function Avatar({ initials }: { initials: string }) {
   const handleLogout = async () => {
@@ -24,6 +25,9 @@ export default function Avatar({ initials }: { initials: string }) {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
+        <DropdownMenuItem>
+          <Link href="/home/my-tickets">My Tickets</Link>
+        </DropdownMenuItem>
         <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
           Logout
           {/* DropdownMenuItem component for the logout action, triggering handleLogout function on click. */}
