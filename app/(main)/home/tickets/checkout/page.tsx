@@ -4,6 +4,7 @@ import { CheckoutContainer } from "@/components/Home/CheckoutContainer";
 // Import the Metadata type from "next" to define metadata for the page.
 // Metadata is used to set SEO-related information like the page title and description.
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 // Define the metadata for the checkout page.
 // This metadata includes the title and description that will be used for SEO and page identification.
@@ -13,10 +14,18 @@ export const metadata: Metadata = {
   // Description of the page, which provides additional context and is used by search engines and social media.
 };
 
+function Loading() {
+  return <div>Loading...</div>;
+}
+
 // Define and export the Checkoutpage function component.
 // This component represents the checkout page of the application.
 export default function Checkoutpage() {
   // Return the CheckoutContainer component to render the checkout page content.
   // The CheckoutContainer component is expected to handle the display of the checkout process.
-  return <CheckoutContainer />;
+  return (
+    <Suspense fallback={<Loading />}>
+      <CheckoutContainer />
+    </Suspense>
+  );
 }
