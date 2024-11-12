@@ -16,8 +16,7 @@ import { GoArrowLeft } from "react-icons/go";
 // Define metadata for the page, including the title and description displayed in the browser tab and search engines.
 export const metadata: Metadata = {
   title: "My Tickets | Ticketa",
-  description:
-    "View and manage your purchased event tickets on Ticketa. Check the status, details, and purchase dates of your tickets all in one place.",
+  description: "View and manage your purchased flight tickets.",
 };
 
 // Define the default export of the TicketsPage function component.

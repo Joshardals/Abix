@@ -14,13 +14,19 @@ interface User {
   userName: string;
 }
 
+interface CreateTicketParams {
+  from: string;
+  to: string;
+  price: number;
+}
+
 interface TicketParams {
   from: string;
   to: string;
   price: number;
-  purchaseDate?: string;
-  userId?: string;
-  ticketId?: string;
+  purchaseDate: string;
+  userId: string;
+  ticketId: string;
 }
 
 interface FetchUserInfoResponse {
@@ -62,7 +68,7 @@ export async function createUserInfo(data: User) {
 
 // Function to create a ticket document after a user purchases an event ticket
 
-export async function createTicketInfo(data: TicketParams) {
+export async function createTicketInfo(data: CreateTicketParams) {
   try {
     // Retrieve the current logged-in user
     const user = await getCurrentUser();
