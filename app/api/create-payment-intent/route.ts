@@ -1,10 +1,12 @@
 // Import necessary classes from the "next/server" module for handling HTTP requests and responses.
 // NextRequest represents an incoming request, and NextResponse is used to return responses.
 import { NextRequest, NextResponse } from "next/server";
+import Stripe from "stripe";
 
 // Import the Stripe library and initialize it with the secret key from environment variables.
 // This library is used to interact with Stripe's API for payment processing.
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string);
+// const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Define an asynchronous function to handle POST requests.
 // This function is intended to create a payment intent with Stripe.

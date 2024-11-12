@@ -5,8 +5,7 @@ import { Checkout } from "./Checkout"; // Imports the Checkout component from a 
 import { formatPrice, formatSubCurrency } from "@/lib/utils"; // Imports utility functions to format prices
 import { loadStripe } from "@stripe/stripe-js"; // Imports function to load Stripe.js
 import { Elements } from "@stripe/react-stripe-js"; // Imports Elements component to integrate Stripe Elements
-import { usePathname, useRouter, useSearchParams } from "next/navigation"; // Imports hooks from Next.js for routing and path handling
-import { useEffect, useRef, useState } from "react"; // Imports React hooks for managing component state and side effects
+import { useSearchParams } from "next/navigation"; // Imports hooks from Next.js for routing and path handling
 
 // Checks if the Stripe public key is defined in environment variables
 if (process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY === undefined) {

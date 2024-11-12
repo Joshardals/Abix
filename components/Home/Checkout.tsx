@@ -6,7 +6,6 @@ import {
 } from "@stripe/react-stripe-js";
 import { formatPrice, formatSubCurrency } from "@/lib/utils";
 import { ButtonInput } from "../form/FormInput";
-import Link from "next/link";
 import { CheckoutSkeleton } from "../ui/CheckoutSkeleton";
 
 // The Checkout component handles the payment process for an event
@@ -94,10 +93,12 @@ export function Checkout({
       } else {
         console.log("Payment confirmed successfully!");
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Handles unexpected errors
-      console.error("Unexpected error during payment:", error.message);
-      setErrorMessage(error.message);
+      console.error("Unexpected error during payment:", error);
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      }
     } finally {
       // Resets loading state after processing is complete
       setLoading(false);

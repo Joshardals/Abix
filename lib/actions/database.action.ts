@@ -142,12 +142,17 @@ export async function fetchCurrentUserTicket(): Promise<FetchUserTicketResponse>
 
     // Return success status with the list of user tickets
     return { success: true, data: tickets };
-  } catch (error: any) {
-    // Log and return error message if fetching tickets fails
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error(
+        `Failed to fetch User Ticket Info Document from the DB: ${error.message}`
+      );
+      return { success: false, msg: error.message };
+    }
     console.error(
-      `Failed to fetch User Ticket Info Document from the DB: ${error.message}`
+      `Failed to fetch User Ticket Info Document from the DB: Unknown error`
     );
-    return { success: false, msg: error.message };
+    return { success: false, msg: "Unknown error occurred" };
   }
 }
 
