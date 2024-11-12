@@ -82,7 +82,7 @@ export function Checkout({
         confirmParams: {
           // Redirects to this URL after payment confirmation
           //   return_url: `${BASE_URL}/payment-success?amount=${amount}&event_name=${event.title}&event_date=${event.date}`,
-          return_url: `http://localhost:3000/home/payment-success?amount=${amount}&from=${from}&to=${to}`,
+          return_url: `https://abix.vercel.app/home/payment-success?amount=${amount}&from=${from}&to=${to}`,
         },
       });
 

@@ -18,9 +18,9 @@ interface TicketParams {
   from: string;
   to: string;
   price: number;
-  purchaseDate: string;
-  userId: string;
-  ticketId: string;
+  purchaseDate?: string;
+  userId?: string;
+  ticketId?: string;
 }
 
 interface FetchUserInfoResponse {
