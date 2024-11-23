@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 
 // Define metadata for the page, including the title and description shown in the browser tab and search engines.
 export const metadata: Metadata = {
-  title: "Abix - Home",
+  title: "Abix - Home", // Title of the page, displayed in the browser tab.
   description:
     "Welcome to Abix! Book your flights easily and embark on your next adventure with ease.",
 };

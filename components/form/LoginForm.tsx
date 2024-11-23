@@ -1,27 +1,26 @@
-"use client"; // Indicates that this file should be run on the client side (not during server-side rendering).
+"use client"; // Tell Next.js this file runs on the client side (not during SSR).
 
-import { ButtonInput, LoginFormInput } from "@/components/form/FormInput"; // Import custom form components.
-import { Form } from "@/components/ui/form"; // Import Form component for handling form state and submissions.
-import Link from "next/link"; // Import Link component for client-side navigation.
-import { useForm } from "react-hook-form"; // Import useForm hook from react-hook-form.
-import { useRouter } from "next/navigation"; // Import useRouter hook for navigation.
-import { useState } from "react"; // Import useState for managing component state.
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod"; // Import zodResolver for using Zod with react-hook-form.
-import { signInUser } from "@/lib/actions/auth.action";
-// import { signInUser } from "@/lib/actions/auth.action"; // Import signInUser function to handle authentication.
+import { ButtonInput, LoginFormInput } from "@/components/form/FormInput"; // Get custom input components.
+import { Form } from "@/components/ui/form"; // Form component to manage form state.
+import Link from "next/link"; // Link component for routing.
+import { useForm } from "react-hook-form"; // Hook to manage form state with React Hook Form.
+import { useRouter } from "next/navigation"; // Hook to handle navigation after form submission.
+import { useState } from "react"; // useState to manage local component state.
+import { z } from "zod"; // Zod for form validation.
+import { zodResolver } from "@hookform/resolvers/zod"; // Resolver to use Zod with React Hook Form.
+import { signInUser } from "@/lib/actions/auth.action"; // Function to authenticate user.
 
 export function LoginForm() {
-  const [error, setError] = useState<string | null>(null); // State for storing error messages.
-  const [loading, setLoading] = useState<boolean>(false); // State for managing loading spinner.
-  const router = useRouter(); // Router instance for navigation.
+  const [error, setError] = useState<string | null>(null); // Store error message from failed sign-in.
+  const [loading, setLoading] = useState<boolean>(false); // Track loading state for form.
+  const router = useRouter(); // Use the router for page navigation.
 
   const formSchema = z.object({
-    email: z.string().email(), // Validates that the email is a valid email address format.
-    password: z.string().min(1, "Required field").max(20), // Ensures password is between 1 and 20 characters long.
+    email: z.string().email(), // Validate email format.
+    password: z.string().min(1, "Required field").max(20), // Password must be between 1 and 20 characters.
   });
 
-  // Initialize useForm with Zod resolver for validation and default values.
+  // Setup useForm hook with Zod validation and default form values.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -33,42 +32,40 @@ export function LoginForm() {
   // Function to handle form submission.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      setLoading(true); // Set loading state to true.
-      setError(null); // Clear any previous error messages.
+      setLoading(true); // Show loading spinner.
+      setError(null); // Clear previous errors.
 
-      // Attempt to sign in the user.
+      // Call sign-in function.
       const result = await signInUser({
         email: values.email,
         password: values.password,
       });
 
-      // Check if the authentication was successful.
       if (!result.success) {
-        setError(result.msg || "error"); // Set error message if authentication fails.
+        setError(result.msg || "error"); // Set error if sign-in fails.
         return;
       }
 
-      alert("User signed in successfully"); // Show success alert.
-      router.push("/home"); // Redirect to home page on successful sign in.
+      alert("User signed in successfully"); // Show success message.
+      router.push("/home"); // Redirect to home page after successful login.
 
     } catch (error) {
       console.log(`An unexpected error occurred: ${error}`); // Log unexpected errors.
-      setError("An unexpected error occurred. Please try again."); // Set generic error message.
+      setError("An unexpected error occurred. Please try again."); // Generic error message.
     } finally {
-      setLoading(false); // Set loading state to false.
+      setLoading(false); // Hide loading spinner when done.
     }
   };
 
   return (
-    <Form {...form}>
-      {" "}
-      {/* Spread form methods and state into the Form component. */}
+    <Form {...form}> 
+      {/* Spread form methods for easy access in the form */}
       <form
-        onSubmit={form.handleSubmit(onSubmit)} // Handle form submission.
-        className="space-y-6 max-sm:w-full sm:w-96" // Responsive width and spacing for form elements.
-        autoComplete="off" // Disable browser autocomplete for this form.
+        onSubmit={form.handleSubmit(onSubmit)} // Handle form submission with onSubmit.
+        className="space-y-6 max-sm:w-full sm:w-96" // Responsive form styling.
+        autoComplete="off" // Disable browser autocomplete.
       >
-        {/* Input fields for email and password. */}
+        {/* Email input */}
         <LoginFormInput
           form={form}
           name="email"
@@ -77,6 +74,7 @@ export function LoginForm() {
           loading={loading}
         />
 
+        {/* Password input */}
         <LoginFormInput
           form={form}
           name="password"
@@ -85,15 +83,15 @@ export function LoginForm() {
           loading={loading}
         />
 
-        {/* Display error message if there is one. */}
+        {/* Display error message if there is one */}
         {error && (
           <p className="text-red-500 text-xs text-center font-bold">{error}</p>
         )}
 
-        {/* Submit button for the form. */}
+        {/* Submit button */}
         <ButtonInput loading={loading} label="Login" />
 
-        {/* Link to sign up page for users who don't have an account. */}
+        {/* Link to sign-up page for new users */}
         <p className="text-sm text-center">
           <span className="opacity-70">Don&apos;t have an account?</span>{" "}
           <Link href="/signup" className="text-deepRed font-semibold">
