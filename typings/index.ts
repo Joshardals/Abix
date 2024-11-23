@@ -1,4 +1,4 @@
-// Define types for the airport result
+// Define types for the airport result. 
 export interface Country {
   code: string;
   name: string;
