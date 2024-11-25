@@ -9,7 +9,7 @@ export function useClickOutside(
       if (ref.current && !ref.current.contains(event.target as Node)) {
         callback();
       }
-    }
+    } 
 
     document.addEventListener("mousedown", handleClickOutside);
     return () => {
