@@ -11,7 +11,7 @@
 - **User Profiles**: view ticket history.
 - **Payment Integration**: Complete payments securely with Stripe for a seamless checkout experience.
 
----
+--- 
 
 ## Technology Stack
 
