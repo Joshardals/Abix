@@ -1,6 +1,6 @@
 # Abix
 
-**Abix** is a simple flight booking platform where users can effortlessly book flight tickets.  
+**Abix** is a simple flight booking platform where users can effortlessly book flight tickets..
 
 ---
 
